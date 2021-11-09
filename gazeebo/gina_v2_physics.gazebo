@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<robot name="gina_v2" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="body_friction" value="0.1" />
+<xacro:property name="wheel_friction" value="10" />
+
+<gazebo reference="base_link">
+  <mu1>${body_friction}</mu1>
+  <mu2>${body_friction}</mu2>
+  <selfCollide>true</selfCollide>
+  <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="right_wheel_1">
+  <mu1>${wheel_friction}</mu1>
+  <mu2>${wheel_friction}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="left_wheel_1">
+  <mu1>${wheel_friction}</mu1>
+  <mu2>${wheel_friction}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="lidar_1">
+  <mu1>${body_friction}</mu1>
+  <mu2>${body_friction}</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+</robot>

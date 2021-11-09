@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<robot name="gina_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find gina_v2_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find gina_v2_description)/urdf/gina_v2.trans" />
+
+<xacro:include filename="$(find gina_v2_description)/gazeebo/gina_v2_materials.gazebo" />
+<xacro:include filename="$(find gina_v2_description)/gazeebo/gina_v2_physics.gazebo" />
+<xacro:include filename="$(find gina_v2_description)/gazeebo/gina_v2_plugins.gazebo" />
+
+<link name="base_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.007280008373306348 1.0580101615215342e-16 0.05716949520129229"/>
+    <mass value="7.289641774274636"/>
+    <inertia ixx="0.061597" ixy="0.0" ixz="0.000113" iyy="0.057431" iyz="0.0" izz="0.111891"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gina_v2_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gina_v2_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-8.137998397877707e-18 -0.007499999999999979 6.938893903907228e-18"/>
+    <mass value="0.07404034880145716"/>
+    <inertia ixx="2.9e-05" ixy="-0.0" ixz="0.0" iyy="5.5e-05" iyz="0.0" izz="2.9e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.0 0.101 -0.0385"/>
+    <geometry>
+      <mesh filename="package://gina_v2_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.0 0.101 -0.0385"/>
+    <geometry>
+      <mesh filename="package://gina_v2_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-8.137998397877701e-18 0.007500000000000048 6.938893903907228e-18"/>
+    <mass value="0.0740403488014572"/>
+    <inertia ixx="2.9e-05" ixy="-0.0" ixz="0.0" iyy="5.5e-05" iyz="0.0" izz="2.9e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.0 -0.101 -0.0385"/>
+    <geometry>
+      <mesh filename="package://gina_v2_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.0 -0.101 -0.0385"/>
+    <geometry>
+      <mesh filename="package://gina_v2_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="2.7755575615628914e-17 3.437409015839573e-17 0.00988282593479857"/>
+    <mass value="0.10517344380282838"/>
+    <inertia ixx="4.5e-05" ixy="-0.0" ixz="0.0" iyy="4.5e-05" iyz="-0.0" izz="8.3e-05"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.088 -0.0 -0.1"/>
+    <geometry>
+      <mesh filename="package://gina_v2_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.088 -0.0 -0.1"/>
+    <geometry>
+      <mesh filename="package://gina_v2_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rev4" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0 -0.101 0.0385"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Rev5" type="continuous">
+  <origin rpy="0 0 0" xyz="0.0 0.101 0.0385"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Rigid6" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.088 0.0 0.1"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+</robot>
